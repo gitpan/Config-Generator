@@ -6,8 +6,6 @@
 #                                                                              #
 #-##############################################################################
 
-# $Id: XML.pm,v 1.15 2014/02/14 08:08:05 c0ns Exp $
-
 #
 # module definition
 #
@@ -15,6 +13,8 @@
 package Config::Generator::XML;
 use strict;
 use warnings;
+our $VERSION  = "0.5";
+our $REVISION = sprintf("%d.%02d", q$Revision: 1.16 $ =~ /(\d+)\.(\d+)/);
 
 #
 # used modules

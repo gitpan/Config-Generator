@@ -6,8 +6,6 @@
 #                                                                              #
 #-##############################################################################
 
-# $Id: Schema.pm,v 1.27 2014/02/17 09:22:52 c0ns Exp $
-
 #
 # module definition
 #
@@ -15,6 +13,8 @@
 package Config::Generator::Schema;
 use strict;
 use warnings;
+our $VERSION  = "0.5";
+our $REVISION = sprintf("%d.%02d", q$Revision: 1.28 $ =~ /(\d+)\.(\d+)/);
 
 #
 # used modules

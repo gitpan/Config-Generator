@@ -6,8 +6,6 @@
 #                                                                              #
 #-##############################################################################
 
-# $Id: Crontab.pm,v 1.5 2014/02/14 08:03:13 c0ns Exp $
-
 #
 # module definition
 #
@@ -15,6 +13,8 @@
 package Config::Generator::Crontab;
 use strict;
 use warnings;
+our $VERSION  = "0.5";
+our $REVISION = sprintf("%d.%02d", q$Revision: 1.6 $ =~ /(\d+)\.(\d+)/);
 
 #
 # used modules

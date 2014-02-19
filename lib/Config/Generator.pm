@@ -6,8 +6,6 @@
 #                                                                              #
 #-##############################################################################
 
-# $Id: Generator.pm,v 1.19 2014/02/14 07:59:10 c0ns Exp $
-
 #
 # module definition
 #
@@ -15,6 +13,8 @@
 package Config::Generator;
 use strict;
 use warnings;
+our $VERSION  = "0.5";
+our $REVISION = sprintf("%d.%02d", q$Revision: 1.22 $ =~ /(\d+)\.(\d+)/);
 
 #
 # used modules
@@ -90,17 +90,11 @@ the amount of verbosity:
 
 =over
 
-=item 0
+=item C<0>: print nothing, only warnings and errors
 
-print nothing, only warnings and errors
+=item C<1>: also print the changes that have been made
 
-=item 1
-
-also print the changes that have been made
-
-=item 2
-
-also print the things that have been checked
+=item C<2>: also print the things that have been checked
 
 =back
 

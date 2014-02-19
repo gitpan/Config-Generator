@@ -6,8 +6,6 @@
 #                                                                              #
 #-##############################################################################
 
-# $Id: File.pm,v 1.17 2014/02/18 06:50:23 c0ns Exp $
-
 #
 # module definition
 #
@@ -15,6 +13,8 @@
 package Config::Generator::File;
 use strict;
 use warnings;
+our $VERSION  = "0.5";
+our $REVISION = sprintf("%d.%02d", q$Revision: 1.18 $ =~ /(\d+)\.(\d+)/);
 
 #
 # used modules

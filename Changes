@@ -1,4 +1,8 @@
 Revision history for Config::Generator:
 
+0.5	Wed Feb 19 2014
+	* The modules $VERSION variables now contain the package version.
+	* Fixed POD formatting.
+
 0.4	Tue Feb 18 2014
 	* First version released in CPAN.

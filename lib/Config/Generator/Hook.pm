@@ -6,8 +6,6 @@
 #                                                                              #
 #-##############################################################################
 
-# $Id: Hook.pm,v 1.7 2014/02/17 09:32:54 c0ns Exp $
-
 #
 # module definition
 #
@@ -15,6 +13,8 @@
 package Config::Generator::Hook;
 use strict;
 use warnings;
+our $VERSION  = "0.5";
+our $REVISION = sprintf("%d.%02d", q$Revision: 1.8 $ =~ /(\d+)\.(\d+)/);
 
 #
 # used modules
