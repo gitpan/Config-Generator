@@ -13,8 +13,8 @@
 package Config::Generator::Schema;
 use strict;
 use warnings;
-our $VERSION  = "0.5";
-our $REVISION = sprintf("%d.%02d", q$Revision: 1.28 $ =~ /(\d+)\.(\d+)/);
+our $VERSION  = "0.6";
+our $REVISION = sprintf("%d.%02d", q$Revision: 1.29 $ =~ /(\d+)\.(\d+)/);
 
 #
 # used modules
@@ -35,6 +35,11 @@ use constant _BOOLEAN => { type => "boolean" };
 use constant OPT_BOOLEAN => { optional => "true",  %{ _BOOLEAN() } };
 use constant DEF_BOOLEAN => { optional => "incfg", %{ _BOOLEAN() } };
 use constant REQ_BOOLEAN => { optional => "false", %{ _BOOLEAN() } };
+
+use constant _DURATION => { type => "duration" };
+use constant OPT_DURATION => { optional => "true",  %{ _DURATION() } };
+use constant DEF_DURATION => { optional => "incfg", %{ _DURATION() } };
+use constant REQ_DURATION => { optional => "false", %{ _DURATION() } };
 
 use constant _HOSTNAME => { type => "hostname" };
 use constant OPT_HOSTNAME => { optional => "true",  %{ _HOSTNAME() } };
@@ -247,8 +252,8 @@ sub import : method {
 
     $pkg = shift(@_);
     foreach my $optional (qw(OPT DEF REQ)) {
-        foreach my $type (qw(BOOLEAN HOSTNAME INTEGER NAME NUMBER PATH SIZE
-                             STRING)) {
+        foreach my $type (qw(BOOLEAN DURATION HOSTNAME INTEGER NAME NUMBER PATH
+                             SIZE STRING)) {
             $exported{$optional . "_" . $type}++;
         }
     }
@@ -317,6 +322,8 @@ declarations (none of them being exported by default):
 
 =item * DEF_BOOLEAN
 
+=item * DEF_DURATION
+
 =item * DEF_HOSTNAME
 
 =item * DEF_INTEGER
@@ -332,6 +339,8 @@ declarations (none of them being exported by default):
 =item * DEF_STRING
 
 =item * OPT_BOOLEAN
+
+=item * OPT_DURATION
 
 =item * OPT_HOSTNAME
 
@@ -352,6 +361,8 @@ declarations (none of them being exported by default):
 =item * OPT_STRING_TABLE
 
 =item * REQ_BOOLEAN
+
+=item * REQ_DURATION
 
 =item * REQ_HOSTNAME
 

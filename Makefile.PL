@@ -7,7 +7,7 @@ my(%param, $emv);
 %param = (
     NAME           => 'Config::Generator',
     AUTHOR         => 'Lionel Cons <lionel.cons@cern.ch>',
-    VERSION        => '0.5',
+    VERSION        => '0.6',
     ABSTRACT       => 'general purpose configuration generator',
     LICENSE        => 'perl',
     EXE_FILES      => [ 'bin/yacg' ],
@@ -20,12 +20,12 @@ my(%param, $emv);
     },
     PREREQ_PM => {
         'Config::General'   => 0,
-        'Config::Validator' => 0,
+        'Config::Validator' => '1.2',
         'Digest::MD5'       => 0,
         'FindBin'           => 0,
         'Getopt::Long'      => 0,
         'JSON'              => 0,
-        'No::Worries'       => 0,
+        'No::Worries'       => '1.1',
         'POSIX'             => 0,
         'Params::Validate'  => 0,
         'Pod::Usage'        => 0,

@@ -1,5 +1,8 @@
 Revision history for Config::Generator:
 
+0.6	Tue Apr  8 2014
+	* Config::Generator::Schema: added "duration" related constants.
+
 0.5	Wed Feb 19 2014
 	* The modules $VERSION variables now contain the package version.
 	* Fixed POD formatting.

@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name:               Config-Generator
-version:            0.5
+version:            0.6
 abstract:           general purpose configuration generator
 author:
     - Lionel Cons <lionel.cons@cern.ch>
@@ -12,12 +12,12 @@ build_requires:
     ExtUtils::MakeMaker:  0
 requires:
     Config::General:    0
-    Config::Validator:  0
+    Config::Validator:  1.2
     Digest::MD5:        0
     FindBin:            0
     Getopt::Long:       0
     JSON:               0
-    No::Worries:        0
+    No::Worries:        1.1
     Params::Validate:   0
     Pod::Usage:         0
     POSIX:              0
