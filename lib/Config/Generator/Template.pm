@@ -13,8 +13,8 @@
 package Config::Generator::Template;
 use strict;
 use warnings;
-our $VERSION  = "0.6";
-our $REVISION = sprintf("%d.%02d", q$Revision: 1.15 $ =~ /(\d+)\.(\d+)/);
+our $VERSION  = "0.7";
+our $REVISION = sprintf("%d.%02d", q$Revision: 1.17 $ =~ /(\d+)\.(\d+)/);
 
 #
 # used modules
@@ -104,11 +104,11 @@ sub _lookup ($@) {
     while (@names > 1) {
         $name = shift(@names);
         @list = grep(ref($_) eq "HASH", map($_->{$name}, @list));
-        dief("unknown path: %s", $path) unless @list;
+        return() unless @list;
     }
     $name = shift(@names);
     @list = grep(defined($_) && ref($_) eq "", map($_->{$name}, @list));
-    dief("unknown path: %s", $path) unless @list;
+    return() unless @list;
     return($list[0]);
 }
 
@@ -157,6 +157,10 @@ sub _process ($@) {
             next;
         }
         $value = _lookup($token->[1], @hashes);
+        if ($token->[0] =~ /^(if|ifnot|if_(true|false))?$/) {
+            # these macros need an existing path...
+            dief("unknown path: %s", $token->[1]) unless defined($value);
+        }
         if ($token->[0] eq "") {
             $result .= _process($value, @hashes);
             next;
@@ -168,12 +172,16 @@ sub _process ($@) {
         $index = _locate($token->[1], \@list);
         if ($token->[0] eq "if") {
             $match = $value;
-        } elsif ($token->[0] eq "if_not") {
+        } elsif ($token->[0] eq "ifnot") {
             $match = not $value;
         } elsif ($token->[0] eq "if_true") {
             $match = is_true($value);
         } elsif ($token->[0] eq "if_false") {
             $match = is_false($value);
+        } elsif ($token->[0] eq "ifdef") {
+            $match = defined($value);
+        } elsif ($token->[0] eq "ifndef") {
+            $match = not defined($value);
         } else {
             dief("unexpected operator: %s", $token->[0]);
         }
@@ -301,13 +309,19 @@ a path in the high-level configuration:
 =item * "<{if(PATH)}>xxx<{endif(PATH)}>" will be replaced by "xxx" if PATH is
 true or "" otherwise (this is done using Perl's conditional testing)
 
-=item * "<{if_not(PATH)}>xxx<{endif(PATH)}>" is the same but negated
+=item * "<{ifnot(PATH)}>xxx<{endif(PATH)}>" is the same as "if()" but negated
 
-=item * "<{if_true(PATH)}>xxx<{endif(PATH)}>" is the same but tested using
-L<Config::Validator>'s is_true()
+=item * "<{if_true(PATH)}>xxx<{endif(PATH)}>" is the same as "if()" but tested
+using L<Config::Validator>'s is_true()
 
-=item * "<{if_false(PATH)}>xxx<{endif(PATH)}>" is the same but tested using
-L<Config::Validator>'s is_false()
+=item * "<{if_false(PATH)}>xxx<{endif(PATH)}>" is the same as "if()" but
+tested using L<Config::Validator>'s is_false()
+
+=item * "<{ifdef(PATH)}>xxx<{endif(PATH)}>" will be replaced by "xxx" if PATH
+is defined (i.e. set) or "" otherwise
+
+=item * "<{ifndef(PATH)}>xxx<{endif(PATH)}>" is the same as "ifdef()" but
+negated
 
 =back
 

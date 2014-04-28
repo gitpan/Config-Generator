@@ -5,6 +5,7 @@ Makefile.PL
 README
 VERSION
 bin/yacg
+eg/xyzcg
 lib/Config/Generator.pm
 lib/Config/Generator/Config.pm
 lib/Config/Generator/Crontab.pm

@@ -1,5 +1,9 @@
 Revision history for Config::Generator:
 
+0.7	Mon Apr 28 2014
+	* Config::Generator::Template: added ifdef() and ifndef() macros.
+	* Added an example of a wrapper script in the "eg" directory.
+
 0.6	Tue Apr  8 2014
 	* Config::Generator::Schema: added "duration" related constants.
 

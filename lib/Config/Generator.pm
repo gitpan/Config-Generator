@@ -13,7 +13,7 @@
 package Config::Generator;
 use strict;
 use warnings;
-our $VERSION  = "0.6";
+our $VERSION  = "0.7";
 our $REVISION = sprintf("%d.%02d", q$Revision: 1.22 $ =~ /(\d+)\.(\d+)/);
 
 #

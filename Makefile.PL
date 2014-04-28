@@ -7,7 +7,7 @@ my(%param, $emv);
 %param = (
     NAME           => 'Config::Generator',
     AUTHOR         => 'Lionel Cons <lionel.cons@cern.ch>',
-    VERSION        => '0.6',
+    VERSION        => '0.7',
     ABSTRACT       => 'general purpose configuration generator',
     LICENSE        => 'perl',
     EXE_FILES      => [ 'bin/yacg' ],

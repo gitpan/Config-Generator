@@ -38,6 +38,8 @@ perldoc command:
     perldoc Config::Generator::Util
     perldoc Config::Generator::XML
 
+You can also find an example of a wrapper script in the eg directory.
+
 LICENSE AND COPYRIGHT
 
 Copyright (C) CERN 2013-2014
