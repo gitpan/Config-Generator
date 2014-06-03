@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name:               Config-Generator
-version:            0.7
+version:            0.8
 abstract:           general purpose configuration generator
 author:
     - Lionel Cons <lionel.cons@cern.ch>

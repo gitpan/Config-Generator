@@ -13,8 +13,8 @@
 package Config::Generator::Config;
 use strict;
 use warnings;
-our $VERSION  = "0.7";
-our $REVISION = sprintf("%d.%02d", q$Revision: 1.7 $ =~ /(\d+)\.(\d+)/);
+our $VERSION  = "0.8";
+our $REVISION = sprintf("%d.%02d", q$Revision: 1.8 $ =~ /(\d+)\.(\d+)/);
 
 #
 # used modules
@@ -161,6 +161,7 @@ sub load_config (@) {
                 -ConfigPath            => [ @IncPath, "$HomeDir/cfg" ],
                 -CComments             => 0,
                 -IncludeAgain          => 1,
+                -IncludeGlob           => 1,
                 -IncludeRelative       => 1,
                 -MergeDuplicateBlocks  => 1,
                 -MergeDuplicateOptions => 0,

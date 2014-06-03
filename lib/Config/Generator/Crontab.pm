@@ -13,8 +13,8 @@
 package Config::Generator::Crontab;
 use strict;
 use warnings;
-our $VERSION  = "0.7";
-our $REVISION = sprintf("%d.%02d", q$Revision: 1.6 $ =~ /(\d+)\.(\d+)/);
+our $VERSION  = "0.8";
+our $REVISION = sprintf("%d.%02d", q$Revision: 1.7 $ =~ /(\d+)\.(\d+)/);
 
 #
 # used modules
@@ -45,7 +45,7 @@ sub format_crontab (%) {
         dief("unexpected character in cron entry: %s", $line)
             if $line =~ /[\x00-\x1f\x7f\x80-\xff]/;
         dief("unexpected cron entry: %s", $line)
-            unless $line =~ /^\s*([\*\d\-\,]+(\/\d+)?\s+){5}\w+\s+\S/;
+            unless $line =~ /^\s*([\*\d\-\,]+(\/\d+)?\s+){5}[\w\-]+\s+\S/;
         $contents .= "$line\n";
     }
     return("") unless length($contents);

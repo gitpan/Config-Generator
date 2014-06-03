@@ -13,8 +13,8 @@
 package Config::Generator::File;
 use strict;
 use warnings;
-our $VERSION  = "0.7";
-our $REVISION = sprintf("%d.%02d", q$Revision: 1.18 $ =~ /(\d+)\.(\d+)/);
+our $VERSION  = "0.8";
+our $REVISION = sprintf("%d.%02d", q$Revision: 1.20 $ =~ /(\d+)\.(\d+)/);
 
 #
 # used modules
@@ -27,6 +27,7 @@ use No::Worries::File qw(file_read file_write);
 use No::Worries::Log qw(log_debug);
 use No::Worries::Proc qw(proc_run);
 use No::Worries::Stat qw(ST_MODE ST_UID ST_GID);
+use No::Worries::String qw(string_quantify);
 use No::Worries::Warn qw(warnf);
 use Params::Validate qw(validate_pos :types);
 use POSIX qw(:errno_h);
@@ -460,17 +461,27 @@ my @handle_manifest_options = (
 
 sub handle_manifest ($$) {
     my($manifest, $clean) = validate_pos(@_, @handle_manifest_options);
-    my(%toclean, @list);
+    my($keep, %tokeep, %toclean, @list);
 
     if ($clean) {
         if (-e $manifest) {
+            # we keep from the old manifest registered files and their parents
+            foreach my $path (keys(%_Registered)) {
+                $keep = $path;
+                while ($keep ne "/") {
+                    $tokeep{$keep}++;
+                    $keep = dir_parent($keep);
+                }
+            }
             log_debug("loading manifest %s...", $manifest);
             foreach my $path (split(/\n/, file_read($manifest))) {
-                $toclean{$path}++ unless $_Registered{$path};
+                $_Registered{$path} = { type => "parent" }
+                    if $tokeep{$path} and not $_Registered{$path};
+                $toclean{$path}++ unless $tokeep{$path};
             }
         }
         @list = sort({ length($b) <=> length($a) } keys(%toclean));
-        log_debug("found %d paths to clean", scalar(@list));
+        log_debug("found %s to clean", string_quantify(scalar(@list), "path"));
         foreach my $path (@list) {
             _ensure_absent($RootDir . $path);
         }

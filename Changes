@@ -1,5 +1,10 @@
 Revision history for Config::Generator:
 
+0.8	Tue Jun  3 2014
+	* Config::Generator::Config: Config::General now uses IncludeGlob=1.
+	* Config::Generator::Crontab: allow user name to contain dashes.
+	* Config::Generator::File: keep parent directories in manifest.
+
 0.7	Mon Apr 28 2014
 	* Config::Generator::Template: added ifdef() and ifndef() macros.
 	* Added an example of a wrapper script in the "eg" directory.
